@@ -27,9 +27,12 @@ int main(int argc,char *argv[]){
   cell *token;
   token = malloc(sizeof(cell));
   retok = malloc(65554);
-  while(*retok != EOF){
-
+  while(!feof(src)){
+    memset(retok,0,1024);
     strcpy(token->name,lexer(src,retok));
+    if(!strcmp(token->name,"\0")){
+      break;
+    }
     if(isalpha(*retok)){
       strcpy(token->name,retok);
       token->tkn = ID;

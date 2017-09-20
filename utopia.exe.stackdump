@@ -1,0 +1,9 @@
+Exception: STATUS_ACCESS_VIOLATION at eip=61159973
+eax=200384B4 ebx=00000003 ecx=200384B4 edx=00000000 esi=6129EDBC edi=6129EDB2
+ebp=0062CC68 esp=0062CC30 program=C:\msys32\home\fil-ari5\utopia\utopia.exe, pid 8992, thread main
+cs=001B ds=0023 es=0023 fs=003B gs=0000 ss=0023
+Stack trace:
+Frame     Function  Args
+0062CC68  61159973 (00000002, 0062CC8C, 200000D0, 610079EA)
+0062CD18  61007A4F (00000000, 0062CD74, 610069E0, 00000000)
+End of stack trace
