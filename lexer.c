@@ -1,27 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
-char *lexer(int argc,char *argv[]){
-  char ch[65554];
+char *lexer(FILE *fp,char *retok){
   int i = 0;
-  while((ch[i] = fgetc(stdin)) != EOF){
-    if(isspace(ch[i])){
+  while((retok[i] = fgetc(fp)) != EOF){
+    if(feof(fp)){
+      break;
+    }
+    if(isspace(retok[i])){
       continue;
     }
-    if(isalpha(ch[i])){
+    if(isalpha(retok[i])){
       i++;
-      while(isalnum(ch[i] = fgetc(stdin))){
+      while(isalnum(retok[i] = fgetc(fp))){
 	i++;
       }
-      //ungetc(ch[i],stdin);
-      printf("ID:%s\n",ch);
-    }else if(isdigit(ch[i])){
-      while(isdigit(ch[i] = fgetc(stdin))){
+      ungetc(retok[i],fp);
+      //printf("ID:%s\n",retok);
+      return retok;
+    }else if(isdigit(retok[i])){
+      //retok[i] = fgetc(fp);
+      while(isdigit(retok[i])){
 	i++;
       }
-      //ungetc(ch,stdin);
-      printf("NUM:%s\n",ch);
+      ungetc(retok[i],fp);
+      //printf("NUM:%s\n",retok);
+      return retok;
+    }else{
+      //printf("SYM:%s\n",retok);
+      return retok;
     }
   }
-  return ch;
+  return retok;
 }
